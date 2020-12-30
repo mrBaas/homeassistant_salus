@@ -91,15 +91,15 @@ class SalusSwitch(SwitchEntity):
             self._coordinator.async_add_listener(self.async_write_ha_state)
         )
 
-    def turn_on(self, **kwargs):
+    async def turn_on(self, **kwargs):
         """Turn device on."""
         self._gateway.turn_on_switch_device(self._idx)
-        self._state = True
+        await self._coordinator.async_request_refresh()
 
-    def turn_off(self, **kwargs):
+    async def turn_off(self, **kwargs):
         """Turn device off."""
         self._gateway.turn_off_switch_device(self._idx)
-        self._state = False
+        await self._coordinator.async_request_refresh()
 
     @property
     def current_power_w(self):
@@ -118,8 +118,8 @@ class SalusSwitch(SwitchEntity):
     @property
     def is_on(self):
         """Return true if device is on."""
-        return self._state
+        return self._coordinator.data.get(self._idx).is_on
 
     def update(self):
         """Update device state."""
-        self._state = self.current_binary_state
+        return None

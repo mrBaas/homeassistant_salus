@@ -10,7 +10,7 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-GATEWAY_PLATFORMS = ["climate", "binary_sensor"]
+GATEWAY_PLATFORMS = ["climate", "binary_sensor", "switch"]
 
 
 async def async_setup(hass: core.HomeAssistant, config: dict):

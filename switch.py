@@ -3,6 +3,7 @@ from datetime import timedelta
 import logging
 import async_timeout
 
+import voluptuous as vol
 from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchEntity
 from homeassistant.util import convert
 
